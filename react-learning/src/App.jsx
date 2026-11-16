@@ -3,7 +3,26 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
-function App() {
+import Home from './pages/Home'
+import BlogList from './pages/BlogList'
+import AddBlog from './pages/AddBlog'
+import { Routes,Route } from 'react-router-dom'
+import NavigationMenu from './components/NavigationBar'
+
+function App(){
+  return(
+    <>
+    <NavigationMenu/>
+    <Routes>
+      <Route path="/" element={<Home/>}></Route>
+      <Route path="/AddBlog" element={<AddBlog/>}></Route>
+      <Route path="/BlogList" element={<BlogList/>}></Route>
+    </Routes>
+
+    </>
+  )
+}
+/*function App() {
   const [products,setProducts]=useState([]);
   useEffect(()=>{
     const fetchProducts=async()=>{
@@ -37,6 +56,6 @@ function App() {
      
     </>
   )
-}
+}*/
 
 export default App
