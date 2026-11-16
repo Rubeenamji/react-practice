@@ -1,29 +1,40 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
-import HeadingComponent from './components/HeadingComponent.jsx'
-import ButtonComponent from './components/ButtonComponent.jsx'
-import Logo from './components/Logo.jsx'
-import SelectBox from './components/SelectBox.jsx'
 function App() {
-  const showAlert=()=>
-  {
-    alert("hellooo");
-  }
-  const options=[
-    {label:'Alappuzha',value:'alpy'},
-    {label:'Malappuram',value:'mlp'},
-    {label:'Calicut',value:'clt'}
-  ];
+  const [products,setProducts]=useState([]);
+  useEffect(()=>{
+    const fetchProducts=async()=>{
+      try{
+      const response=await fetch('https://dummyjson.com/products?limit=10');
+      const responseJson=await response.json();
+      console.log(responseJson);
+      setProducts(responseJson.products);
+      }
+      catch(error)
+      {
+        console.log("Error:",error);
+      }
+    }
+    fetchProducts();
+  },[])
   return (
     <>
      
-     <ButtonComponent text="click me..." handleClick={showAlert}/>
-     <HeadingComponent name="Ruby" age={35} />
-      <Logo url= "favicon.svg"/>          
-        <SelectBox label="Select City" options={options}/>       
+     <h1>Product List</h1>
+     {
+  
+     products.map((product)=>
+     <div key={product.sku}>
+       <h6>{product.title}</h6>
+       <h6>{product.price}</h6>
+       <img src={product.thumbnail} width="100px" height="70px"/>
+
+     </div>
+    )}
+     
     </>
   )
 }
