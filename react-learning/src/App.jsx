@@ -8,6 +8,7 @@ import BlogList from './pages/BlogList'
 import AddBlog from './pages/AddBlog'
 import { Routes,Route } from 'react-router-dom'
 import NavigationMenu from './components/NavigationBar'
+import BlogDetails from './pages/BlogDetails'
 
 function App(){
   return(
@@ -15,8 +16,9 @@ function App(){
     <NavigationMenu/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path="/AddBlog" element={<AddBlog/>}></Route>
-      <Route path="/BlogList" element={<BlogList/>}></Route>
+      <Route path="/addblog" element={<AddBlog/>}></Route>
+      <Route path="/bloglist" element={<BlogList/>}></Route>
+      <Route path="/blog/:id" element={<BlogDetails/>}></Route>
     </Routes>
 
     </>
